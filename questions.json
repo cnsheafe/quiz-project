@@ -1,0 +1,46 @@
+{
+  "q1":
+  {"text":"What is the SI unit of electrical charge?",
+  "choices":{"a":"Coulumb","b":"Ohm","c":"Watt","d":"Volt"},
+  "ans":"a"},
+  "q2":
+  {"text":"If two 100ohm resistors are placed in parallel, what is the effective resistance?",
+  "choices":{"a":"75ohm","b":"50ohm","c":"100ohm","d":"200ohm"},
+  "ans":"b"},
+  "q3":
+  {"text":"What direction does current flow in a diode?",
+  "choices":{"a":"cathode to anode","b":"anode to cathode","c":"cathode to anode to cathode","d":"doesn't matter"},
+  "ans":"a"},
+  "q4":
+  {"text":"Which of these is not a valid type of signal modulation?",
+  "choices":{"a":"QAM","b":"Frequency Shift-Keying","c":"GFSK","d":"Shannon Cyclical Phase-shift"},
+  "ans":"d"},
+  "q5":
+  {"text":"Which of these people is considered the father of information theory?",
+  "choices":{"a":"Albert Einstein","b":"Richard Feynman","c":"Claude E. Shannon","d":"Nikola Tesla"},
+  "ans":"c"},
+  "q6":
+  {"text":"How do microwaves cook food?",
+  "choices":{
+    "a":"EM waves bounce between the plates of the microwave and vibrate the air",
+    "b":"Water molecules within the food absorb the energy from the EM waves",
+    "c":"The CIA use their camera to whisper sweet-nothings into your food",
+    "d":"The rotating plate absorbs the energy of the EM waves and heats the food"},
+  "ans":"b"},
+  "q7":
+  {"text":"Of the listed frame times for a computer monitor, which one corresponds to a 60Hz refresh rate?",
+  "choices":{"a":"16.67ms","b":"60ms","c":"33ms","d":"30ms"},
+  "ans":"a"},
+  "q8":
+  {"text":"Which of the following sampling rates satisfies the Nyquist Rate for a 1500Hz signal?(If multiple answers are valid, pick the smallest one)",
+  "choices":{"a":"2200Hz","b":"1500Hz","c":"3700Hz","d":"1400Hz"},
+  "ans":"c"},
+  "q9":
+  {"text":"Which of these companies bought Atmel in 2016",
+  "choices":{"a":"Microsoft","b":"Microchip","c":"Intel","d":"Texas Instruments"},
+  "ans":"b"},
+  "q10":
+  {"text":"Which language is Google's Javscript V8 Engine written in?",
+  "choices":{"a":"Javascript","b":"Java","c":"Assembly","d":"C++"},
+  "ans":"d"}
+}
