@@ -1,54 +1,76 @@
 /*jshint esversion: 6*/
+
+/*TODO: add result screen at end*/
+/*TODO: add restart behavior when user gets to end of quiz*/
+
 function initState() {
   let state = {
     numCorrect: 0,
     questionNum: 0,
-    currentQuestion: {}
+    ansSelected: '',
+    correctAns: '',
+    db: {}
   };
   return state;
 }
 
-function loadJSON() {
-  let url = 'https://github.com/cnsheafe/quiz-project/blob/master/questions.json';
-  $.get(url, function(data) {
-    console.log(data);
-  },'json');
-  //let req = new XMLHttpRequest();
-  /*req.overrideMimeType('application/json');
-  req.responseType = 'json';
-  req.open('GET', 'questions.json');
-  let db;
-  req.onload = function() {
-    db = req.response;
-  };*/
-  //return db;
-}
-
-function loadQuestion(state) {
-  $.getJSON('questions.json', function(data){
-    state.currentQuestion = data;
-    console.log(data);
+function loadJSON(state) {
+  let url = 'https://api.myjson.com/bins/k3jef';
+  $.getJSON(url, function(data){
+    state.db = data;
   });
 }
 
-function renderFeedback(state,selector) {
+function isCorrectAns(state) {
+  if (state.db['q' + state.questionNum].ans === state.ansSelected){
+    state.numCorrect++;
+    return true;
+  }
+  else {return false;}
+}
 
+function renderQuestion(state) {
+  let selector = $('#question');
+  selector.removeClass('hide');
+  selector.empty();
+  question = state.db['q'+(state.questionNum+1)];
+  selector.append('<li>'+question.text+'</li>');
+
+  for (var choice in question.choices) {
+    html = '<span id="'+choice+'"><input type="radio" name="choice">'+question.choices[choice]+'</span>';
+    selector.append(html);
+  }
+}
+
+function renderFeedback(state, selector) {
+  if(isCorrectAns(state)){
+    selector.parent().addClass('correct');
+  }
+  else {
+    selector.parent().addClass('wrong');
+    $('#'+state.correctAns).addClass('correct');
+  }
 }
 
 
 $(function main(){
   let state = initState();
-  loadJSON();
-  //console.log(db);
+  loadJSON(state);
+
   $('form').on('click','input', function() {
-    state.numAnswered++;
-    renderFeedback(state, $(this));
+    state.ansSelected=$(this).parent().attr('id');
+    console.log(state.ansSelected);
+    renderFeedback(state,$(this));
   });
 
   $('form').on('submit', function(event) {
     event.preventDefault();
-    console.log('I was clicked');
-    renderNextPage(state);
+    renderQuestion(state);
+    state.questionNum++;
+    state.correctAns = state.db['q'+(state.questionNum)].ans;
+
+
+
   });
 
 });
