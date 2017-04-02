@@ -31,7 +31,7 @@ function renderQuestion(state) {
   selector.removeClass('hide');
   selector.empty();
   let question = state.db['q'+(state.questionNum + 1)];
-  selector.append('<li>'+question.text+'</li>');
+  selector.append('<h1>'+question.text+'</h1>');
 
   for (var choice in question.choices) {
     let html = '<span id="'+choice+'"><input type="radio" name="choice">'+question.choices[choice]+'</span>';
@@ -60,6 +60,7 @@ function renderResultPage(state) {
   const resultHeaderHtml = '<h1> Congratulations!</h1>';
   $('main').prepend(resultHtml);
   $('main').prepend(resultHeaderHtml);
+  $('main').find('form').eq(1).addClass('center-form');
 }
 
 
@@ -81,10 +82,11 @@ $(function main(){
         state.numCorrect = 0;
         state.questionNum = 0;
         state.numAnswered = 0;
-        $('button').text('Restart');
+        $('button').text('Retry?');
       }
       else {
         $('h1, p').addClass('hide');
+        $('button').parent().removeClass('center-form');
         $('button').text('Next');
         renderQuestion(state);
         state.questionNum++;
