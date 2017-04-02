@@ -1,10 +1,70 @@
 /*csslint box-sizing: false*/
 * {
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+}
+
+main {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#greeting {
+  width: 50%;
+  margin: 0 auto;
+}
+
+form {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: xx-large;
 }
 
 span {
   display: block;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: x-large;
+  border: 2px solid gray;
+  border-bottom: 0;
+
+}
+
+#d {
+  border-bottom: 2px solid gray;
+}
+input {/*The radio buttons*/
+  border: 0;
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+}
+
+.center-form {
+  text-align: center;
+}
+
+button {
+  margin-left: 15%;
+  margin-right: 15%;
+  height: 3em;
+  width: 5em;
+  font-size: x-large;
+  border: 0;
+}
+
+p {
+  text-align: center;
+  font-size: large;
 }
 
 .hide {
