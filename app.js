@@ -1,11 +1,8 @@
 /*jshint esversion: 6*/
-
-/*TODO: add result screen at end*/
-/*TODO: add restart behavior when user gets to end of quiz*/
-
 function initState() {
   let state = {
     numCorrect: 0,
+    numAnswered: 0,
     questionNum: 0,
     ansSelected: '',
     correctAns: '',
@@ -33,11 +30,11 @@ function renderQuestion(state) {
   let selector = $('#question');
   selector.removeClass('hide');
   selector.empty();
-  question = state.db['q'+(state.questionNum+1)];
+  let question = state.db['q'+(state.questionNum + 1)];
   selector.append('<li>'+question.text+'</li>');
 
   for (var choice in question.choices) {
-    html = '<span id="'+choice+'"><input type="radio" name="choice">'+question.choices[choice]+'</span>';
+    let html = '<span id="'+choice+'"><input type="radio" name="choice">'+question.choices[choice]+'</span>';
     selector.append(html);
   }
 }
@@ -50,27 +47,51 @@ function renderFeedback(state, selector) {
     selector.parent().addClass('wrong');
     $('#'+state.correctAns).addClass('correct');
   }
+  $('input').each(function(index, element) {
+    $(element).prop("disabled", true);
+  });
 }
+
+function renderResultPage(state) {
+  $('h1').remove();
+  $('p').remove();
+  $('#question').addClass('hide');
+  const resultHtml = '<p> You got ' + state.numCorrect + '/10 Correct!</p>';
+  const resultHeaderHtml = '<h1> Congratulations!</h1>';
+  $('main').prepend(resultHtml);
+  $('main').prepend(resultHeaderHtml);
+}
+
 
 
 $(function main(){
   let state = initState();
   loadJSON(state);
-
-  $('form').on('click','input', function() {
+  $('#question').on('click','input', function() {
     state.ansSelected=$(this).parent().attr('id');
-    console.log(state.ansSelected);
+    state.numAnswered++;
     renderFeedback(state,$(this));
   });
 
   $('form').on('submit', function(event) {
     event.preventDefault();
-    renderQuestion(state);
-    state.questionNum++;
-    state.correctAns = state.db['q'+(state.questionNum)].ans;
-
-
-
+    if(state.numAnswered === state.questionNum) {
+      if(state.questionNum === 10) {
+        renderResultPage(state);
+        state.numCorrect = 0;
+        state.questionNum = 0;
+        state.numAnswered = 0;
+        $('button').text('Restart');
+      }
+      else {
+        $('h1, p').addClass('hide');
+        $('button').text('Next');
+        renderQuestion(state);
+        state.questionNum++;
+        state.correctAns = state.db['q'+(state.questionNum)].ans;
+      }
+    }
   });
+
 
 });
