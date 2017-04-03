@@ -4,12 +4,34 @@
   box-sizing: border-box;
 }
 
+html {
+
+}
+
+html::after {
+  content: "";
+  background: url('../img/circuits2_1920x1080.jpg') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+body {
+  margin-top: 7%;
+}
+
 main {
   margin-left: 10%;
   margin-right: 10%;
 }
 
-#greeting {
+#center-h1 {
+  text-align: center;
   width: 50%;
   margin: 0 auto;
 }
@@ -22,26 +44,23 @@ form {
 }
 
 h1 {
-  margin: 0 auto;
-  text-align: center;
-  font-size: xx-large;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 80%;
+  font-size: 35px;
 }
 
 span {
+  font-family: 'Roboto Slab', serif;
   display: block;
   margin-left: 15%;
   margin-right: 15%;
   margin-bottom: 0;
   padding: 10px;
-  font-size: x-large;
-  border: 2px solid gray;
+  font-size: 25px;
   border-bottom: 0;
-
 }
 
-#d {
-  border-bottom: 2px solid gray;
-}
 input {/*The radio buttons*/
   border: 0;
   height: 2em;
@@ -72,12 +91,15 @@ p {
 }
 
 .correct {
-  background-color: green;
+  color: #1abc9c;
+  font-weight: bold;
 }
 
 .wrong {
-  background-color: red;
+  color: #e74c3c;
+  font-weight: bold;
 }
 
-/*TODO: animate background color slide from left to right on choices
+/*TODO: style radio buttons
+  TODO: style button
   TODO: fade in/out for question transitions*/
