@@ -29,23 +29,27 @@ function isCorrectAns(state) {
 function renderQuestion(state) {
   let selector = $('#question');
   selector.removeClass('hide');
-  selector.empty();
+
+  $('input').each(function(index, element) {
+    $(element).prop("disabled", false);
+    $(element).prop("checked", false);
+    $(element).next().find('span').removeClass('correct');
+    $(element).next().find('span').removeClass('wrong');
+  });
+
   let question = state.db['q'+(state.questionNum + 1)];
-  selector.append('<h1>'+question.text+'</h1>');
+  selector.find('h1').text(question.text);
 
   for (var choice in question.choices) {
-    let html = '<span id="'+choice+'"><input type="radio" name="choice">'+question.choices[choice]+'</span>';
-    selector.append(html);
+    selector.find('#'+choice).next().find('span').eq(0).text(question.choices[choice]);
   }
 }
 
 function renderFeedback(state, selector) {
-  if(isCorrectAns(state)){
-    selector.parent().addClass('correct');
-  }
-  else {
-    selector.parent().addClass('wrong');
-    $('#'+state.correctAns).addClass('correct');
+  $('#'+state.correctAns).next().find('span').addClass('correct');
+
+  if(!isCorrectAns(state)){
+    selector.next().find('span').addClass('wrong');
   }
   $('input').each(function(index, element) {
     $(element).prop("disabled", true);
@@ -69,7 +73,8 @@ $(function main(){
   let state = initState();
   loadJSON(state);
   $('#question').on('click','input', function() {
-    state.ansSelected=$(this).parent().attr('id');
+    //console.log($(this).next().find('span'));
+    state.ansSelected=$(this).attr('id');
     state.numAnswered++;
     renderFeedback(state,$(this));
   });
