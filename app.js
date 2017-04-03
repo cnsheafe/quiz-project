@@ -57,7 +57,7 @@ function renderResultPage(state) {
   $('p').remove();
   $('#question').addClass('hide');
   const resultHtml = '<p> You got ' + state.numCorrect + '/10 Correct!</p>';
-  const resultHeaderHtml = '<h1> Congratulations!</h1>';
+  const resultHeaderHtml = '<h1 id="center-h1"> Congratulations!</h1>';
   $('main').prepend(resultHtml);
   $('main').prepend(resultHeaderHtml);
   $('main').find('form').eq(1).addClass('center-form');
