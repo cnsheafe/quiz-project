@@ -19,7 +19,7 @@ function loadJSON(state) {
 }
 
 function isCorrectAns(state) {
-  if (state.db['q' + state.questionNum].ans === state.ansSelected){
+  if (state.correctAns === state.ansSelected){
     state.numCorrect++;
     return true;
   }
@@ -27,11 +27,13 @@ function isCorrectAns(state) {
 }
 
 function renderQuestion(state) {
-  let selector = $('#question');
-  selector.removeClass('hide');
+
+  $('#question').removeClass('hide');
   $('form').addClass('fade-question');
   $('#question').removeClass('disable-effect');
   $('form').find('button').addClass('disable-effect');
+
+  /*Enables user selection and removes color-highlighting for new question*/
   $('input').each(function(index, element) {
     $(element).prop("disabled", false);
     $(element).prop("checked", false);
@@ -40,10 +42,10 @@ function renderQuestion(state) {
   });
 
   let question = state.db['q'+(state.questionNum + 1)];
-  selector.find('h2').text(question.text);
+  $('#question').find('h2').text(question.text);
 
   for (var choice in question.choices) {
-    selector.find('#'+choice).next().text(question.choices[choice]);
+    $('#question').find('#'+choice).next().text(question.choices[choice]);
   }
 }
 
@@ -52,6 +54,7 @@ function renderFeedback(state, selector) {
   if(!isCorrectAns(state)) {
     selector.next().addClass('wrong');
   }
+  /*Prevents user from reselecting answer*/
   $('input').each(function(index, element) {
     $(element).prop("disabled", true);
   });
@@ -72,16 +75,17 @@ function renderResultPage(state) {
 }
 
 
-
+/*Event listeners*/
 $(function main(){
   let state = initState();
   loadJSON(state);
+
   $('#question').on('click','input', function() {
     state.ansSelected=$(this).attr('id');
     state.numAnswered++;
     renderFeedback(state,$(this));
   });
-
+  /*Watches for button to be clicked*/
   $('form').on('submit', function(event) {
     event.preventDefault();
     if(state.numAnswered === state.questionNum) {
