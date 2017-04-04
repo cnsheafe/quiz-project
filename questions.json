@@ -1,19 +1,19 @@
 {
   "q1":
-  {"text":"What is the SI unit of electrical charge?",
+  {"text":"What is the SI unit for electrical charge?",
   "choices":{"a":"Coulumb","b":"Ohm","c":"Watt","d":"Volt"},
   "ans":"a"},
   "q2":
-  {"text":"If two 100ohm resistors are placed in parallel, what is the effective resistance?",
-  "choices":{"a":"75ohm","b":"50ohm","c":"100ohm","d":"200ohm"},
+  {"text":"If two 100\u03a9 resistors are placed in parallel, what is the effective resistance?",
+  "choices":{"a":"75\u03a9","b":"50\u03a9","c":"100\u03a9","d":"200\u03a9"},
   "ans":"b"},
   "q3":
   {"text":"What direction does current flow in a diode?",
   "choices":{"a":"cathode to anode","b":"anode to cathode","c":"cathode to anode to cathode","d":"doesn't matter"},
-  "ans":"a"},
+  "ans":"b"},
   "q4":
   {"text":"Which of these is not a valid type of signal modulation?",
-  "choices":{"a":"QAM","b":"Frequency Shift-Keying","c":"GFSK","d":"Shannon Cyclical Phase-shift"},
+  "choices":{"a":"QAM","b":"Frequency Shift-Keying","c":"GFSK","d":"Shannon Cyclical Phase-Shift"},
   "ans":"d"},
   "q5":
   {"text":"Which of these people is considered the father of information theory?",
@@ -29,14 +29,14 @@
   "ans":"b"},
   "q7":
   {"text":"Of the listed frame times for a computer monitor, which one corresponds to a 60Hz refresh rate?",
-  "choices":{"a":"16.67ms","b":"60ms","c":"33ms","d":"30ms"},
+  "choices":{"a":"16.67ms","b":"60ms","c":"33.75ms","d":"30ms"},
   "ans":"a"},
   "q8":
   {"text":"Which of the following sampling rates satisfies the Nyquist Rate for a 1500Hz signal?(If multiple answers are valid, pick the smallest one)",
   "choices":{"a":"2200Hz","b":"1500Hz","c":"3700Hz","d":"1400Hz"},
   "ans":"c"},
   "q9":
-  {"text":"Which of these companies bought Atmel in 2016",
+  {"text":"Which of these companies bought Atmel in 2016?",
   "choices":{"a":"Microsoft","b":"Microchip","c":"Intel","d":"Texas Instruments"},
   "ans":"b"},
   "q10":
