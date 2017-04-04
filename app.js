@@ -29,31 +29,35 @@ function isCorrectAns(state) {
 function renderQuestion(state) {
   let selector = $('#question');
   selector.removeClass('hide');
-
+  $('form').addClass('fade-question');
+  $('#question').removeClass('disable-effect');
+  $('form').find('button').addClass('disable-effect');
   $('input').each(function(index, element) {
     $(element).prop("disabled", false);
     $(element).prop("checked", false);
-    $(element).next().find('span').removeClass('correct');
-    $(element).next().find('span').removeClass('wrong');
+    $(element).next().removeClass('correct');
+    $(element).next().removeClass('wrong');
   });
 
   let question = state.db['q'+(state.questionNum + 1)];
-  selector.find('h1').text(question.text);
+  selector.find('h2').text(question.text);
 
   for (var choice in question.choices) {
-    selector.find('#'+choice).next().find('span').eq(0).text(question.choices[choice]);
+    selector.find('#'+choice).next().text(question.choices[choice]);
   }
 }
 
 function renderFeedback(state, selector) {
-  $('#'+state.correctAns).next().find('span').addClass('correct');
-
-  if(!isCorrectAns(state)){
-    selector.next().find('span').addClass('wrong');
+  $('#'+state.correctAns).next().addClass('correct');
+  if(!isCorrectAns(state)) {
+    selector.next().addClass('wrong');
   }
   $('input').each(function(index, element) {
     $(element).prop("disabled", true);
   });
+  $('#question').addClass('disable-effect');
+  $('form').removeClass('fade-question');
+  $('form').find('button').removeClass('disable-effect');
 }
 
 function renderResultPage(state) {
@@ -73,7 +77,6 @@ $(function main(){
   let state = initState();
   loadJSON(state);
   $('#question').on('click','input', function() {
-    //console.log($(this).next().find('span'));
     state.ansSelected=$(this).attr('id');
     state.numAnswered++;
     renderFeedback(state,$(this));
