@@ -43,18 +43,27 @@ form {
   margin-bottom: 20px;
 }
 
-h1 {
-  margin-left: 15%;
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.fade-question {
+  animation: fadein 1s;
+}
+
+h1, h2 {
+  margin-left: 10%;
   margin-right: 15%;
   width: 80%;
   font-size: 35px;
+  animation: fadein 1s;
 }
 
 span {
   font-family: 'Roboto Slab', serif;
-  display: block;
-  margin-left: 15%;
-  margin-right: 15%;
+  display: inline-block;
+  margin-left: 10px;
   margin-bottom: 0;
   padding: 10px;
   font-size: 25px;
@@ -62,28 +71,98 @@ span {
 }
 
 input {/*The radio buttons*/
+  display: none;
   border: 0;
-  height: 2em;
-  width: 2em;
-  margin-right: 1em;
+}
+
+label {
+  display: block;
+  position: relative;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.custom-radio {
+  display:inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: -25px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: 4px solid black;
+}
+
+label:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+label:hover .custom-radio {
+  width: 28px;
+  height: 28px;
+}
+
+label:hover .custom-radio::before {
+  width: 12px;
+  height: 12px;
+  left: 4px;
+  top: 0;
+}
+
+.custom-radio::before {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 0;
+  margin: auto;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  transition: background 0.25s linear;
+}
+
+input:checked ~ .custom-radio::before {
+  background-color: #d973de;
 }
 
 .center-form {
   text-align: center;
 }
 
-button {
+.center-form button {
   margin-left: 15%;
+  animation: fadein 1s;
+}
+
+.disable-effect {
+  pointer-events: none;
+}
+
+button {
+  margin-left: 10%;
   margin-right: 15%;
   height: 3em;
   width: 5em;
   font-size: x-large;
-  border: 0;
+  border: 1px solid black;
+}
+
+button:hover {
+  border: 2px solid black;
 }
 
 p {
   text-align: center;
   font-size: large;
+  animation: fadein 1s;
 }
 
 .hide {
@@ -93,13 +172,11 @@ p {
 .correct {
   color: #1abc9c;
   font-weight: bold;
+  transition: color 0.25s linear;
 }
 
 .wrong {
   color: #e74c3c;
   font-weight: bold;
+  transition: color 0.25s linear;
 }
-
-/*TODO: style radio buttons
-  TODO: style button
-  TODO: fade in/out for question transitions*/
