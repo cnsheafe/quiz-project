@@ -12,7 +12,7 @@ function initState() {
 }
 
 function loadJSON(state) {
-  let url = 'https://api.myjson.com/bins/k3jef';
+  let url = 'https://api.myjson.com/bins/zfmh7';
   $.getJSON(url, function(data){
     state.db = data;
   });
