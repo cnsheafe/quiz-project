@@ -28,7 +28,6 @@ main {
 
 #center-h1 {
   text-align: center;
-  width: 50%;
   margin: 0 auto;
 }
 
@@ -51,7 +50,6 @@ form {
 h1, h2 {
   margin-left: 10%;
   margin-right: 15%;
-  width: 80%;
   font-size: 35px;
   animation: fadein 1s;
 }
